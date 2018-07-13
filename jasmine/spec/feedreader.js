@@ -63,9 +63,7 @@ $(function() {
      /* Describe test suite"Initial Entries" */    
     describe('Initial Entries', function(){
         beforeEach(function(done){
-            loadFeed(0, function(){
-                done();
-            });
+            loadFeed(0, done);
         });
         /* this test ensures when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container.*/
         it('define if entry has more than 0 entries after the loadFeed function is called and completes its work', function(){
@@ -74,21 +72,18 @@ $(function() {
         });
     });          
     /*Describe test suite "New Feed Selection"*/
-    describe('New Feed Selection', function(){
-         /*Avoid duplicated setup and Initial loaded feed setup*/
-        var initialFeedHtml = $('.feed').html();
-        beforeEach(function(done){
-            loadFeed(0, function(){
-                loadFeed(1, function() {
-                    done();
-                });
+    describe('New Feed Selection', function() {
+        var initialFeedHtml;
+
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                initialFeedHtml = $('.feed').html();
+                loadFeed(1, done);
             });
         });
         /* test that ensures when a new feed is loaded by the loadFeed function that the content actually changes.*/
-        it("changes its loaded content", function(done) {
-            var newFeedHtml = $('.feed').html();
-            expect(newFeedHtml).not.toBe(initialFeedHtml);
-            done();
+        it('changes its loaded content', function() {
+            expect($('.feed').html()).not.toBe(initialFeedHtml);
         });
-    });
+    }); 
 }());
