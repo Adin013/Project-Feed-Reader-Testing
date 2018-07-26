@@ -4,6 +4,8 @@ In this project you are given a web-based application that reads RSS feeds. The 
 
 
 # tech using
-. Jasmine
-. jQuery
-. HTML5 / CSS3
+* Jasmine
+
+* jQuery
+
+* HTML5 / CSS3
